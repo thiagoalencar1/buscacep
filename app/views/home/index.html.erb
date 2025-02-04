@@ -1,2 +1,21 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="text-center" style="margin-top: 100px;">
+  <h1>Buscar CEP:</h1>
+  <h2>Digite aqui o CEP desejado:</h2>
+
+  <%= form_with url: home_index_path, method: :post do %>
+    <%= text_field_tag :find_cep, @cep, placeholder: "Digite o cep:", class: "input input-bordered input-lg w-full max-w-xs" %>
+    <%= submit_tag "Buscar CEP", class: "btn btn-primary mt-4" %>
+  <% end %>
+
+  <% if @cep.present? %>
+    <div class="mt-4">
+      <h2>Endereço pesquisado:</h2>
+      <p>CEP: <%= @address[:cep] %></p>
+      <p>Logradouro: <%= @address[:address] %></p>
+      <p>Bairro: <%= @address[:district] %></p>
+      <p>Cidade: <%= @address[:city] %></p>
+      <p>Estado: <%= @address[:state] %></p>
+      <p>DDD: <%= @address[:ddd] %></p>
+    </div>
+  <% end %>
+</div>
