@@ -4,7 +4,7 @@
 
   <%= form_with url: home_index_path, method: :post do %>
     <%= text_field_tag :find_cep, @cep, placeholder: "Digite o cep:", class: "input input-bordered input-lg w-full max-w-xs" %>
-    <%= submit_tag "Buscar CEP", class: "btn btn-primary mt-4" %>
+    <%= submit_tag "Buscar", class: "btn btn-primary mt-4" %>
   <% end %>
 
   <% if @cep.present? %>
