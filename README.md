@@ -35,12 +35,15 @@ mv .env.example .env
 make up
 ```
 
+A aplicação estará disponível no endereço http://localhost:3000/ .
+
 ### 4. Execute os testes
+Em outro terminal digite:
 ```bash
 make test
 ```
 
-### 5. Se quiser acessar o bash dentro do container
+### 5. Acessar o bash dentro do container
 ```
 make bash
 ```
