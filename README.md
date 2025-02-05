@@ -3,6 +3,7 @@ Aplicação que realiza consultas usando a [API de Ceps da AwesomeAPI](https://c
 
 ## Tela da aplicação em funcionamento
 ![BuscaCep](https://github.com/user-attachments/assets/6593439d-ead8-467d-ba6c-7421bb19cb01)
+*aguarde carregar*
 
 ## Features
 O que a aplicação faz:
@@ -45,3 +46,4 @@ make bash
 ```
 
 ## Cobertura de testes
+![image](https://github.com/user-attachments/assets/5e07b167-849f-47df-bb45-c2ca4be653af)
