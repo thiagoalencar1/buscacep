@@ -2,7 +2,7 @@
   <a class="btn btn-ghost text-2xl" href="/">Busca CEP</a>
 </div>
 
-<div class="text-center" style="margin-top: 100px;">
+<div class="text-center mt-[100px] mb-[165px]">
   <h2 class="mb-4 text-2xl">Digite aqui o CEP desejado:</h2>
 
   <%= form_with url: find_cep_path, method: :post do |f| %>
@@ -19,20 +19,56 @@
   <% if @address.present? %>
     <%= render_address(@address) %>
   <% end %>
-  
-  <div style="display: flex; justify-content: space-between; max-width: 700px; margin: 100px auto;">
-    <div class="mt-4" style="flex: 1; margin: 10px;">
-      <h2 class="text-xl font-bold">Top 5 CEPs Consultados:</h2>
-      <% CepLog.top_five.each do |cep_log| %>
-        <p><strong>CEP:</strong> <%= cep_log.cep %> - <strong>Consultas:</strong> <%= cep_log.count %></p>
-      <% end %>
-    </div>
 
-    <div class="mt-4" style="flex: 1; margin: 10px;">
+  <div class="flex w-full flex-col lg:flex-row" style="max-width: 900px; margin: 100px auto;">
+    <div class="card bg-base-300 rounded-box grid flex-grow place-items-center p-6">
+
+      <h2 class="text-xl font-bold">Top 5 CEPs Consultados:</h2>
+      <table class="table text-center text-base">
+        <thead>
+          <tr>
+            <th class="text-lg">CEP</th>
+            <th class="text-lg">Consultas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% CepLog.top_five.each do |cep_log| %>
+            <tr>
+              <th><%= cep_log.cep %></th>
+              <td><%= cep_log.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider lg:divider-horizontal"></div>
+
+    <div class="card bg-base-300 rounded-box grid flex-grow place-items-center p-6">
       <h2 class="text-xl font-bold">Top 5 CEPs Consultados por Estado:</h2>
-      <% CepLog.top_five_by_state.each do |cep_log| %>
-        <p><strong>Estado:</strong> <%= cep_log.state %> - <strong>CEP:</strong> <%= cep_log.cep %> - <strong>Consultas:</strong> <%= cep_log.count %></p>
-      <% end %>
+      <table class="table text-center text-base">
+        <thead>
+          <tr>
+            <th class="text-lg">Estado</th>
+            <th class="text-lg">CEP</th>
+            <th class="text-lg">Consultas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% CepLog.top_five_by_state.sort_by(&:count).reverse.each do |cep_log| %>
+            <tr>
+              <th><%= cep_log.state %></th>
+              <th><%= cep_log.cep %></th>
+              <td><%= cep_log.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+
+<footer class="footer bg-neutral text-neutral-content p-10 footer-center">
+  <aside>
+    <p>Copyleft 🄯 - Todos os direitos compartilhados</p>
+  </aside>
+</footer>
