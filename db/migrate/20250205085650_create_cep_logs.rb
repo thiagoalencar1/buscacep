@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCepLogs < ActiveRecord::Migration[8.0]
   def change
     create_table :cep_logs do |t|

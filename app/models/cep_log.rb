@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CepLog < ApplicationRecord
   validates :cep, presence: true
   validates :state, presence: true
@@ -8,8 +10,8 @@ class CepLog < ApplicationRecord
 
   scope :top_five, -> { order(count: :desc).limit(5) }
   scope :top_five_by_state, -> {
-    select('DISTINCT ON (state) *')
-      .order('state, count DESC')
+    select("DISTINCT ON (state) *")
+      .order("state, count DESC")
       .limit(5)
   }
 

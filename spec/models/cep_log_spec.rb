@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CepLog, type: :model do
   describe ".log" do
     context "when the CEP does not exist yet" do
       it "creates a new record" do
-  
         address_data = {
           cep: '05424020',
           state: 'SP',

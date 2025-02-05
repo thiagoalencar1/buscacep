@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   def index
   end
@@ -19,7 +21,7 @@ class HomeController < ApplicationController
   private
 
   def format_cep(cep)
-    cep.gsub(/[\.\-\s]/, '')
+    cep.gsub(/[\.\-\s]/, "")
   end
 
   def get_address(cep)

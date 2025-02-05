@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "Home", type: :request do
@@ -16,7 +18,7 @@ RSpec.describe "Home", type: :request do
 
     it "should find cep" do
       cep = '05424020'
-  
+
       stub_request(:get, "https://cep.awesomeapi.com.br/json/#{cep}")
         .to_return(body: { address: 'Rua Professor Carlos Reis', city: 'São Paulo', state: 'SP' }.to_json)
 
@@ -30,24 +32,24 @@ RSpec.describe "Home", type: :request do
 
     it "if cep is invalid" do
       cep = '1223499'
-  
+
       stub_request(:any, "https://cep.awesomeapi.com.br/json/#{cep}")
-        .to_return(body: {"code":"invalid","message":"CEP invalido, tente: 00000000"}.to_json)
+        .to_return(body: { "code": "invalid", "message": "CEP invalido, tente: 00000000" }.to_json)
 
       post find_cep_path, params: { find_cep: cep }
-  
+
       expect(response).to have_http_status(:success)
       expect(response.body).to include("CEP invalido")
     end
-  
+
     it "if cep contain invalid characters" do
       cep = '4342adf'
-  
+
       stub_request(:get, "https://cep.awesomeapi.com.br/json/#{cep}")
-        .to_return(body: {"code":"invalid","message":"CEP invalido, tente: 00000000"}.to_json)
+        .to_return(body: { "code": "invalid", "message": "CEP invalido, tente: 00000000" }.to_json)
 
       post find_cep_path, params: { find_cep: cep }
-  
+
       expect(response).to have_http_status(:success)
       expect(response.body).to include("CEP invalido")
     end
