@@ -27,6 +27,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "capybara"
   gem "rails-controller-testing"
+  gem "webmock"
 end
 
 # Project gems

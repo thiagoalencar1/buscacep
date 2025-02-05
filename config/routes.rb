@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
-  post "home/index" => "home#find_cep"
+  get "home/index" => "home#index"
+
+  post "home/index" => "home#find_cep", as: :find_cep
 end
