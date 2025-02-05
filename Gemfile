@@ -28,6 +28,7 @@ group :development, :test do
   gem "capybara"
   gem "rails-controller-testing"
   gem "webmock"
+  gem "simplecov", require: false
 end
 
 # Project gems

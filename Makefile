@@ -11,4 +11,4 @@ up:
 	docker compose up
 
 test:
-	docker compose run web bundle exec rspec
+	docker compose run web bash -c "RAILS_ENV=test bundle exec rspec"

@@ -29,9 +29,9 @@ RSpec.describe "Home", type: :request do
     end
 
     it "if cep is invalid" do
-      cep = '12.234-99'
+      cep = '1223499'
   
-      stub_request(:get, "https://cep.awesomeapi.com.br/json/#{cep}")
+      stub_request(:any, "https://cep.awesomeapi.com.br/json/#{cep}")
         .to_return(body: {"code":"invalid","message":"CEP invalido, tente: 00000000"}.to_json)
 
       post find_cep_path, params: { find_cep: cep }

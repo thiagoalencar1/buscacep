@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   end
 
   def find_cep
-    @cep = params[:find_cep]
+    @cep = format_cep(params[:find_cep])
     @address = get_address(@cep)
 
     if get_address(@cep)[:code]
@@ -17,6 +17,10 @@ class HomeController < ApplicationController
   end
 
   private
+
+  def format_cep(cep)
+    cep.gsub(/[\.\-\s]/, '')
+  end
 
   def get_address(cep)
     response ||= Faraday.get("https://cep.awesomeapi.com.br/json/#{cep}")

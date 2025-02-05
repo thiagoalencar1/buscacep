@@ -7,8 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore all environment files.
-/.env*
+# Ignore .env.
+.env
+/.env
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -32,3 +33,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore coverage reports.
+/coverage/*
