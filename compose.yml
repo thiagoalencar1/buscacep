@@ -16,8 +16,7 @@ services:
     image: ruby:3.4.1
     container_name: web
     user: root
-    # command: bash -c "rm -rf tmp/pids/server.pid && bin/setup && bundle exec rails s -b 0.0.0.0 -p 3000"
-    command: bash
+    command: bash -c "rm -rf tmp/pids/server.pid && bin/setup && bundle exec rails s -b 0.0.0.0 -p 3000"
     working_dir: /app
     ports: [3000:3000]
     volumes:
@@ -32,4 +31,3 @@ services:
 volumes:
   postgres:
   rubygems:
-
