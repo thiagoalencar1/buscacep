@@ -1,21 +1,30 @@
-<div class="text-center" style="margin-top: 100px;">
-  <h1>Buscar CEP:</h1>
-  <h2>Digite aqui o CEP desejado:</h2>
+<div class="navbar-center bg-accent text-center">
+  <a class="btn btn-ghost text-2xl" href="/">Busca CEP</a>
+</div>
 
-  <%= form_with url: find_cep_path, method: :post do %>
-    <%= text_field_tag :find_cep, @cep, placeholder: "Digite o cep:", class: "input input-bordered input-lg w-full max-w-xs" %>
-    <%= submit_tag "Buscar", class: "btn btn-primary mt-4" %>
+<div class="text-center" style="margin-top: 100px;">
+  <h2 class="mb-4 text-2xl">Digite aqui o CEP desejado:</h2>
+
+  <%= form_with url: find_cep_path, method: :post do |f| %>
+    <%= f.text_field :find_cep, placeholder: "Digite o cep:", class: "input input-bordered input-lg w-full max-w-xs" %>
+    <%= f.submit "Buscar", class: "btn btn-accent mt-4" %>
+  <% end %>
+
+  <% if @error.present? %>
+    <div class="mt-4">
+      <p><%= @error %></p>
+    </div>
   <% end %>
 
   <% if @address.present? %>
-    <div class="mt-4">
-      <h2>Endereço pesquisado:</h2>
-      <p>CEP: <%= @address[:cep] %></p>
-      <p>Logradouro: <%= @address[:address] %></p>
-      <p>Bairro: <%= @address[:district] %></p>
-      <p>Cidade: <%= @address[:city] %></p>
-      <p>Estado: <%= @address[:state] %></p>
-      <p>DDD: <%= @address[:ddd] %></p>
+    <div class="mt-4 p-4 border rounded bg-gray-100">
+      <h2 class="text-xl font-bold">Endereço pesquisado:</h2>
+      <p><strong>CEP:</strong> <%= @address[:cep] %></p>
+      <p><strong>Logradouro:</strong> <%= @address[:address] %></p>
+      <p><strong>Bairro:</strong> <%= @address[:district] %></p>
+      <p><strong>Cidade:</strong> <%= @address[:city] %></p>
+      <p><strong>Estado:</strong> <%= @address[:state] %></p>
+      <p><strong>DDD:</strong> <%= @address[:ddd] %></p>
     </div>
   <% end %>
 </div>
