@@ -17,14 +17,22 @@
   <% end %>
 
   <% if @address.present? %>
-    <div class="mt-4 p-4 border rounded bg-gray-100">
-      <h2 class="text-xl font-bold">Endereço pesquisado:</h2>
-      <p><strong>CEP:</strong> <%= @address[:cep] %></p>
-      <p><strong>Logradouro:</strong> <%= @address[:address] %></p>
-      <p><strong>Bairro:</strong> <%= @address[:district] %></p>
-      <p><strong>Cidade:</strong> <%= @address[:city] %></p>
-      <p><strong>Estado:</strong> <%= @address[:state] %></p>
-      <p><strong>DDD:</strong> <%= @address[:ddd] %></p>
-    </div>
+    <%= render_address(@address) %>
   <% end %>
+  
+  <div style="display: flex; justify-content: space-between; max-width: 700px; margin: 100px auto;">
+    <div class="mt-4" style="flex: 1; margin: 10px;">
+      <h2 class="text-xl font-bold">Top 5 CEPs Consultados:</h2>
+      <% CepLog.top_five.each do |cep_log| %>
+        <p><strong>CEP:</strong> <%= cep_log.cep %> - <strong>Consultas:</strong> <%= cep_log.count %></p>
+      <% end %>
+    </div>
+
+    <div class="mt-4" style="flex: 1; margin: 10px;">
+      <h2 class="text-xl font-bold">Top 5 CEPs Consultados por Estado:</h2>
+      <% CepLog.top_five_by_state.each do |cep_log| %>
+        <p><strong>Estado:</strong> <%= cep_log.state %> - <strong>CEP:</strong> <%= cep_log.cep %> - <strong>Consultas:</strong> <%= cep_log.count %></p>
+      <% end %>
+    </div>
+  </div>
 </div>

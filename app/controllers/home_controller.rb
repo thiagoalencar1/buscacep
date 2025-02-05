@@ -10,6 +10,7 @@ class HomeController < ApplicationController
       @error = get_address(@cep)[:message]
     else
       @address = get_address(@cep)
+      CepLog.log(@address)
     end
 
     render :index

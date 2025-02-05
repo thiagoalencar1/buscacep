@@ -8,7 +8,7 @@ RSpec.describe "home/index.html.erb", type: :view do
 
   it "displays the correct title" do
     render
-    expect(rendered).to have_content("Buscar CEP")
+    expect(rendered).to have_content("Busca CEP")
   end
 
   it "has a specific link" do

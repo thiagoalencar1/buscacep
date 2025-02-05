@@ -6,23 +6,29 @@ class CepLog < ApplicationRecord
   validates :address, presence: true
   validates :ddd, presence: true
 
-  scope :last_5, -> { order(count: :desc).limit(5) }
+  scope :top_five, -> { order(count: :desc).limit(5) }
+  scope :top_five_by_state, -> {
+    select('DISTINCT ON (state) *')
+      .order('state, count DESC')
+      .limit(5)
+  }
 
-  def log(cep, state, city, district, address, ddd)
-    cep_record = find_by(cep: cep)
+  def self.log(address)
+    cep_record = find_by(cep: address[:cep])
 
     if cep_record.nil?
       cep_record = CepLog.new(
-        cep: cep,
-        state: state,
-        city: city,
-        district: district,
-        address: address,
-        ddd: ddd,
+        cep: address[:cep],
+        state: address[:state],
+        city: address[:city],
+        district: address[:district],
+        address: address[:address],
+        ddd: address[:ddd],
         count: 1
       )
       cep_record.save
     else
       cep_record.increment!(:count)
     end
+  end
 end
